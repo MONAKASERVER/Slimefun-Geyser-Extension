@@ -136,12 +136,12 @@ public class Slimefun implements Extension {
 		// PLAYER_HEAD
 		//
 		
-		CustomItemData BASE = CustomItemData.builder()
-                .name("BASE")
-                .customItemOptions(CustomItemOptions.builder().customModelData(1111).build())
-                .textureSize(16)
-                .build();
-        event.register("minecraft:player_head", BASE);
+		CustomItemData base = CustomItemData.builder()
+        .name("base")
+        .customItemOptions(CustomItemOptions.builder().customModelData(1111).build())
+        .textureSize(16)
+        .build();
+event.register("minecraft:player_head", base);
 		
 		CustomItemData wiki = CustomItemData.builder()
                 .name("wiki")
