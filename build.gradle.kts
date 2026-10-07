@@ -3,8 +3,10 @@ plugins {
 }
 
 val id = project.property("id") as String
-val extensionName = project.property("name") as String
-val geyserApiVersion = "2.6.1"
+val extensionName = providers.gradleProperty("extensionName").get()
+val extensionAuthor = providers.gradleProperty("author").get()
+val extensionVersion = version.toString()
+val geyserApiVersion = "2.11.3"
 
 repositories {
     // Repo for the Geyser API artifact
@@ -15,42 +17,47 @@ repositories {
 }
 
 dependencies {
-    // Geyser API - needed for all extensions
     compileOnly("org.geysermc.geyser:api:$geyserApiVersion-SNAPSHOT")
-
-    // Include other dependencies here - e.g. configuration libraries.
+    testImplementation(platform("org.junit:junit-bom:5.11.4"))
+    testImplementation("org.junit.jupiter:junit-jupiter")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
-// Java currently requires Java 17 or higher, so extensions should also target it
 java {
-    targetCompatibility = JavaVersion.VERSION_17
-    sourceCompatibility = JavaVersion.VERSION_17
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
 }
 
-afterEvaluate {
-    val idRegex = Regex("[a-z][a-z0-9-_]{0,63}")
-    if (idRegex.matches(id).not()) {
-        throw IllegalArgumentException("Invalid extension id $id! Must only contain lowercase letters, " +
-                "and cannot start with a number.")
-    }
+val idRegex = Regex("[a-z][a-z0-9-_]{0,63}")
+if (idRegex.matches(id).not()) {
+    throw IllegalArgumentException("Invalid extension id $id! Must only contain lowercase letters, " +
+            "and cannot start with a number.")
+}
 
-    val nameRegex = Regex("^[A-Za-z_.-]+$")
-    if (nameRegex.matches(extensionName).not()) {
-        throw IllegalArgumentException("Invalid extension name $extensionName! Must fit regex: ${nameRegex.pattern})")
-    }
+val nameRegex = Regex("^[A-Za-z_.-]+$")
+if (nameRegex.matches(extensionName).not()) {
+    throw IllegalArgumentException("Invalid extension name $extensionName! Must fit regex: ${nameRegex.pattern})")
 }
 
 tasks {
-    // This automatically fills in the extension.yml file.
     processResources {
         filesMatching("extension.yml") {
             expand(
                 "id" to id,
                 "name" to extensionName,
                 "api" to geyserApiVersion,
-                "version" to project.version,
-                "author" to project.property("author")
+                "version" to extensionVersion,
+                "author" to extensionAuthor
             )
         }
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+
+    jar {
+        archiveFileName = "Slimefun-Geyser-Extension-$extensionVersion.jar"
     }
 }

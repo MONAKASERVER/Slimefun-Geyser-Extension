@@ -45,6 +45,9 @@ gradle-app.setting
 *.tar.gz
 *.rar
 
+# The wrapper JAR must be versioned so clean checkouts and CI can run Gradle.
+!gradle/wrapper/gradle-wrapper.jar
+
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
