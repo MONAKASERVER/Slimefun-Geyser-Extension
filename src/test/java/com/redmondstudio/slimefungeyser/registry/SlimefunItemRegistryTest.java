@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class SlimefunItemRegistryTest {
     private static final int EXPECTED_DEFINITION_COUNT = 561;
     private static final String EXPECTED_REGISTRY_SHA256 =
-            "ff55fa9d0421a8f93f5ecf4c20e5155fa82e54277704e9569aa3e3606803af37";
+            "b29a47bb77dd08b2ad6335002d161e23c826e396ec0c639d6b5c2cadc7704d20";
 
     @Test
     void preservesEveryLegacyDefinitionWithoutDuplicates() {
@@ -41,6 +41,12 @@ class SlimefunItemRegistryTest {
                 && item.customModelData() == 2200113
                 && item.bedrockIdentifier().equals("slimefun:carbon")
                 && item.icon().equals("carbon")));
+        assertTrue(definitions.stream().anyMatch(item -> item.name().equals("search")
+                && item.javaItem().equals("minecraft:name_tag")
+                && item.customModelData() == 2200005));
+        assertTrue(definitions.stream().anyMatch(item -> item.name().equals("next_on")
+                && item.javaItem().equals("minecraft:lime_stained_glass_pane")
+                && item.customModelData() == 2200009));
     }
 
     @Test

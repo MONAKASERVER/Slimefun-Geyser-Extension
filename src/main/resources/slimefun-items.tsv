@@ -328,7 +328,7 @@ block_placer	minecraft:dispenser	2200309	32	slimefun:block_placer	block_placer
 ancient_pedestal	minecraft:dispenser	2200337	32	slimefun:ancient_pedestal	ancient_pedestal
 interface_items	minecraft:dispenser	2200394	16	slimefun:interface_items	interface_items
 interface_fuel	minecraft:dispenser	2200395	16	slimefun:interface_fuel	interface_fuel
-search	minecraft:name_tag	2200027	32	slimefun:search	search
+search	minecraft:name_tag	2200005	32	slimefun:search	search
 armor_forge	minecraft:anvil	2200027	32	slimefun:armor_forge	armor_forge
 cactus_helmet	minecraft:leather_helmet	2200073	16	geyser_custom:cactus_helmet	cactus_helmet
 scuba_helmet	minecraft:leather_helmet	2200207	16	geyser_custom:scuba_helmet	scuba_helmet
@@ -555,7 +555,7 @@ electric_gold_pan_iii	minecraft:brown_terracotta	2200356	16	slimefun:electric_go
 tree_growth_accelerator	minecraft:brown_terracotta	2200485	16	slimefun:tree_growth_accelerator	tree_growth_accelerator
 teleporter_pylon	minecraft:purple_stained_glass	2200461	16	slimefun:teleporter_pylon	teleporter_pylon
 previous_on	minecraft:lime_stained_glass_pane	2200007	16	slimefun:previous_on	previous_on
-next_on	minecraft:lime_stained_glass_pane	2200002	16	slimefun:next_on	next_on
+next_on	minecraft:lime_stained_glass_pane	2200009	16	slimefun:next_on	next_on
 ui_background_2	minecraft:gray_stained_glass_pane	1111111	16	slimefun:ui_background_2	background
 background	minecraft:gray_stained_glass_pane	2200002	16	slimefun:background	background
 previous_off	minecraft:black_stained_glass_pane	2200008	16	slimefun:previous_off	previous_off
